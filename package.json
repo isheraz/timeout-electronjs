@@ -1,0 +1,77 @@
+{
+  "name": "timeout-electronjs",
+  "version": "1.0.0",
+  "description": "The app to remind you it's time to take a break from the screen and go out!",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix --ext .js",
+    "prettier": "prettier --write .",
+    "make": "electron-forge make"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix & npm run prettier & npm run lint & git add ."
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isheraz/timeout-electronjs.git"
+  },
+  "author": "Ahmad Ijaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isheraz/timeout-electronjs/issues"
+  },
+  "homepage": "https://github.com/isheraz/timeout-electronjs#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "^11.1.1",
+    "electron-installer-dmg": "^3.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^4.3.7",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "electron": "^11.1.1",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "timeout_electronjs"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
