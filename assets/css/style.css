@@ -1,3 +1,26 @@
+body {
+  overflow: hidden !important;
+}
 p {
   text-align: center !important;
+}
+
+.qoute {
+  background: black !important;
+  color: white !important;
+}
+
+h1 {
+  text-align: center !important;
+  margin-top: 7%;
+}
+
+h2 {
+  text-align: center !important;
+  margin-top: 18%;
+}
+
+h4 {
+  text-align: center !important;
+  margin-bottom: 18%;
 }
