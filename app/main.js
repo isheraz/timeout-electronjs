@@ -1,9 +1,11 @@
 const { app, BrowserWindow, Tray, Menu, screen, ipcMain } = require('electron');
 const path = require('path');
 const AutoLaunch = require('auto-launch');
+const { conn } = require('./database');
 
 const autoLauncher = new AutoLaunch({
   name: 'Timeout-ElectronJS',
+  path: process.env.PORTABLE_EXECUTABLE_DIR,
 });
 
 const iconPath = path.join(__dirname, '../assets/images/clock72@4x.png');
@@ -12,7 +14,12 @@ let win = null;
 let haltWin = null;
 const timer = 60; // In Minutes
 const haltTimer = 5; // In Minutes
-const quote = 'Do Good Have Good!';
+const quote = 'Do Good Have Good!!';
+
+const initAppDB = async () => {
+  const db = await conn.initDB();
+  db.dump().then(console.log);
+};
 
 const onAutoLaunch = async () => {
   // Checking if autoLaunch is enabled, if not then enabling it.
@@ -223,6 +230,7 @@ app.on('ready', async () => {
     tray.setContextMenu(contextMenu);
     tray.setToolTip(`Timeout-Electron 1.0\n5 minutes break after 60 minutes`);
     onAutoLaunch();
+    await initAppDB();
     await createWindow();
     startTimer();
   } catch (error) {
